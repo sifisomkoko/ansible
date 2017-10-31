@@ -1,0 +1,10 @@
+---
+- hosts: slave
+  tasks:
+  - name: remove previous project
+    command: rm -rf /home/Ansible/Documents/trunk
+ 
+  - name: checkout from svn
+    subversion:
+      repo=https://cptlsvn01.za.mhgad.com/repos/vitel6/server/trunk
+      dest=/home/Ansible/Documents/trunk

@@ -1,0 +1,11 @@
+---
+- hosts: slave
+  tasks:
+  - name: stop the vitel server service
+    service: name=bluetooth state=stopped
+  - name: delete the old jar
+    file: name=/opt/vitel/server/vitel-server-7.0.8-SNAPSHOT.jar state=absent
+  - name: copy the new artifact
+    command: scp linux@192.168.198.135:/home/Ansible/Documents/trunk/server/target/vitel-server-7.0.8-SNAPSHOT.jar /opt/vitel/server
+  - name: start vitel-server service
+    service: name=bluetooth state=started

@@ -1,0 +1,9 @@
+---
+- hosts: slave
+  tasks:
+  - name: stop the asterisk-java service
+    service: name=bluetooth state=stopped
+  - name: copy the new artifact
+    command: scp linux@192.168.198.135:/home/linux/Documents/trunk/asterisk-java/target/asterisk-java-7.0.8-SNAPSHOT.jar /home/linux/Documents/services
+  - name: start service
+    service: name=bluetooth state=started
